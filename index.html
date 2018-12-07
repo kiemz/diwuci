@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet"href="z.css">
+   <title>好难啊</title>
+
+</head>
+<style>
+body{
+    margin:0;
+    padding: 0;
+}
+    </style>
+
+<body>
+    <ki><input type="image" src="kiki.jpg" style="z-index:-1;position: absolute;height:100%;width:100%;margin: 0;padding: 0;">
+    </ki>
+    <div id="yi">
+    </div>
+    <div>
+        <h6 id="p1">页数:1</h6>
+        <input type="button" id="zuo"value="上一页" />
+        <input type="button" id="you"value="下一页" />
+     </div>
+    
+    
+   <script tyoe="text/javascript">
+       var a=1;
+       function loadXHRDoc(a){
+            var xhr = null;
+          if(window.XMLHttpRequest){
+               xhr = new XMLHttpRequest();
+            }else{
+                xhr = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+  xhr.onreadystatechange=function(){
+    if(xhr.readyState == 4&&xhr.status==200){
+      var n=xhr.responseText
+      var n1=JSON.parse(n)
+      var str=JSON.stringify(n1.result)
+      var b1=str.replace(/,{"/g,"<br>")
+      var b2=b1.replace(/"}/g,"</br>")
+      var b3=b2.replace("[","")
+      var b4=b3.replace("]","")
+      var b5=b4.replace('{"',"")
+      var b6=b5.replace(/class_num/g,"班级")
+      var b7=b6.replace(/gender/g,"性别")
+      var b8=b7.replace(/major/g,"专业")
+      var b9=b8.replace(/name/g,"姓名")
+      var b10=b9.replace(/student_num/g,"学号")
+      var b11=b10.replace(/"/g,"")
+      var b12=b11.replace(/,/g,"&nbsp;&nbsp;&nbsp;")
+      var yi=document.getElementById("yi")
+      yi.innerHTML=b12
+  }
+  }
+   xhr.open("get", "https://api.tumiv.com/v2/cqupt/student?year=2015&page="+a);
+   xhr.send();
+   }
+   
+   window.onload=function(){
+   var btn1=document.querySelector("#zuo")
+   btn1.addEventListener("click",function(){
+       var p1=document.getElementById("p1")
+       a=parseInt(p1.textContent.replace("页数:",""))
+       if(a<=10&&a>1){
+           a=a-1
+           var p1=document.getElementById("p1")
+           p1.textContent="页数:"+a
+           loadXHRDoc(a)}
+           else{
+               alert("喵喵喵，有事吗？")
+           }
+       })
+       var btn2=document.querySelector("#you")
+   btn2.addEventListener("click",function(){
+       var p1=document.getElementById("p1")
+       a=parseInt(p1.textContent.replace("页数:",""))
+       if(a<10&&a>=1){
+           a=a+1
+           var p1=document.getElementById("p1")
+           p1.textContent="页数:"+a
+           loadXHRDoc(a)}
+           else{
+               alert("喵喵喵，有事吗？")
+           }
+       })
+       loadXHRDoc(a)
+   }
+    </script>
+</body>
+</html>
+
+
+
+

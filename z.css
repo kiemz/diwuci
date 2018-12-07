@@ -1,0 +1,28 @@
+#yi{
+    font-size: 15px;
+    line-height: 17px;
+    font-weight: bold;
+    text-align: center;
+}
+#p1{
+    position: relative;
+    bottom: 0;
+    display:block;
+    text-align:center;
+}
+#zuo{
+    width:100px;
+    height: 50px;
+    background: rgb(43, 226, 186);
+    position: absolute;
+    top:0px;
+    left: 0;
+}
+#you{
+    width:100px;
+    height: 50px;
+    background: rgb(43, 226, 186);
+   position: absolute;
+   top:0px;
+   right: 0;
+}
